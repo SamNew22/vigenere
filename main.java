@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class main {
- public static void main(String[] args) {
+
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите сообщение: ");
@@ -10,7 +11,8 @@ public class main {
         System.out.println("Введите ключ: ");
         String key = scanner.nextLine();
 
-        System.out.println("Зашифрованное сообщение: " + encrypt(message, key));
+        String encryptedMessage = encrypt(message, key);
+        System.out.println("зашифрованное сообщение: " + encryptedMessage);
     }
 
     private static String encrypt(String message, String key) {
@@ -21,11 +23,11 @@ public class main {
             char keyChar = key.charAt(j);
 
             if (Character.isUpperCase(messageChar)) {
-                int encryptedChar = ((messageChar - 'А') + (keyChar - 'А')) % 32 + 'А';
-                encryptedMessage.append((char) encryptedChar);
+                int encryptedCharIndex = (messageChar - 'А' + keyChar - 'А') % 32;
+                encryptedMessage.append((char) ('А' + encryptedCharIndex));
             } else if (Character.isLowerCase(messageChar)) {
-                int encryptedChar = ((messageChar - 'а') + (keyChar - 'а')) % 32 + 'а';
-                encryptedMessage.append((char) encryptedChar);
+                int encryptedCharIndex = (messageChar - 'а' + keyChar - 'а') % 32;
+                encryptedMessage.append((char) ('а' + encryptedCharIndex));
             } else {
                 encryptedMessage.append(messageChar);
             }
